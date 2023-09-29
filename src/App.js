@@ -14,15 +14,10 @@ function App() {
     <div className='App' style={{backgroundColor:'white', width:'100%', height:'100%', minHeight:'100vh', margin:'auto'}}>
       <BrowserRouter>
         <Routes> 
-          //ruta para iniciar sesión. 
           <Route path="/" element={<Login usuario={usuario} setUsuario={setUsuario} />} />
-          //ruta para mostrar los elementos del carro.
-          <Route path="/articulos" element={<Articulos/>} />
-          //ruta para mostar dentro de cada carro los datos.
-          <Route path="/articulos/:articuloId" element={<ArticuloDetail datos={datos} setDatos={setDatos} 
-          //comprobacion de usuario.
+          <Route path="/cafes" element={<cafes/>} />
+          <Route path="/cafes/:cafeId" element={<CafeDetail datos={datos} setDatos={setDatos} 
           usuario={usuario} setUsuario={setUsuario} />} /> 
-          //ruta que lleva al elemento. 
           <Route path="*" element={<Navigate to="/" />} /> 
         </Routes>
       </BrowserRouter>

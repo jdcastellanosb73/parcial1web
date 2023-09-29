@@ -14,13 +14,6 @@ function Login(props){
   const [formValues, setFormValues] = useState({email:"", password:"",role:true})
   const [validationStates, setValidationStates] = useState({emailState:true, passwordState:true})
 
-
-
-  const handleEmailChange = ((e) => {
-    setFormValues({...formValues, email: e.target.value})
-  });
-
-
 // Creamos un nuevo XMLHttpRequest
 var xhttp = new XMLHttpRequest();
 
@@ -67,18 +60,16 @@ xhttp.setRequestHeader("Content-type", "application/json");
       }
   }
 
+  
   const clickSubmit = (() => {
-    //validate email
     if (validationStates.emailState && validationStates.passwordState) {
       handlePost();
-      //validar
     } else if (!formValues.email.match(valorARevisar)) {
       setValidationStates({ ...validationStates, emailState: false });
     } else if (!formValues.password.match(valorARevisar2)) {
       setValidationStates({ ...validationStates, passwordState: false });
     }
     })
-
     const exampleJSON = { email: formValues.email, password: formValues.password}
 
     async function handlePost() {
