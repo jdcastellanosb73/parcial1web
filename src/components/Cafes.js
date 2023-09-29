@@ -2,15 +2,15 @@ import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Articulo from "./Articulo";
+import Cafe from "./Cafe";
 
-function Articulos(){
+function Cafes(){
     //cambiar articulos por el objeto que piden.
-    const [articulos, setArticulos] = useState([]);
+    const [cafes, setCafes] = useState([]);
     
     useEffect(() => {
         //datos de donde salen los objetos es un .json
-        const URL ="https://raw.githubusercontent.com/montejs3/ParcialReact/main/datos.json";
+        const URL ="http://localhost:3001/GET/cafes";
         fetch(URL).then(data => data.json()).then(data =>{
             setArticulos(data);
         }); 
@@ -18,12 +18,12 @@ function Articulos(){
 
     return(
         <div className="container">
-           <h2 className="mt-2">Listado de Articulos</h2>
+           <h2 className="mt-2">Listado de Cafes</h2>
             <hr></hr>
             <Row>
-                {articulos.map(articulo =>(
+                {cafes.map(cafe =>(
                 <Col>
-                <Articulo articulo={articulo} /> 
+                <Articulo cafe={cafe} /> 
                 </Col>) )
                 }
 
@@ -33,4 +33,4 @@ function Articulos(){
     )
 }
 
-export default Articulos;
+export default Cafes;

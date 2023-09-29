@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useNavigate} from "react-router-dom";
 import './App.css';
 import Login from './components/Login';
-import Articulos from './components/Articulos';
-import ArticuloDetail from './components/ArticuloDetail';
+import Cafes from './components/Cafes';
+import CafeDetail from './components/CafeDetail';
 import { useState } from 'react';
 
 function App() {
@@ -26,7 +26,6 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} /> 
         </Routes>
       </BrowserRouter>
-      
     </div>
   );
 }
