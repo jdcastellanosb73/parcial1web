@@ -1,57 +1,79 @@
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
-import Card from 'react-bootstrap/Card';
-import Col from "react-bootstrap/esm/Col";
-import Row from "react-bootstrap/esm/Row";
+import { useEffect, useState } from 'react';
+import { Container } from "react-bootstrap";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import Row from "react-bootstrap/Row";
+import {FormattedMessage, FormattedDate} from 'react-intl';
 
-function CafeDetail(props){
 
-    const params = useParams();
-    console.log(params.cafeId)
-    const [cafes, setCafe] = useState([]);
 
-    useEffect(() => { 
-        const URL ="http://localhost:3001/GET/cafes/{{cafe_id}}";
-        fetch(URL).then(data => data.json())
-        .then(data =>{setArticulo(data);
-        }); 
-    }, []);
+function CafeDetail() {
 
-   console.log(cafes)
-   const especial = cafes.find((cafe) => cafe.id === (params.cafeId)) || {};
+    const [cafes, datosCafes] = useState([]);
 
-    return(
-        <div>
-        <h1>Detalle de cafe</h1>
-        <hr></hr>
-        <div className="align-self">
-        <Card style={{ width: '45rem', height: '30rem' }} className="mb-3" >
+    const [CafeSelecionado, setCafeSelecionado] = useState(null);
 
-           <Card.Body>
-            <Row>
-               <Col>
-               <Card.Img
-                    style={{ height: "14rem" }}
-                    variant="top"
-                    src={especial.imagen}
-                    alt={especial.description}
-                />
-               </Col>
+    const handleClick = (cafe) => {
+        fetch(`http://localhost:3001/cafes/${cafe.id}`)
+            .then(response => response.json())
+            .then(data => setCafeSelecionado(data))}
 
-               <Col>
-                <Card.Title>
-                    <h1>   {especial.nombre}</h1>
-                    <Card.Text> Card Fecha: {especial.fecha_cultivo} </Card.Text>
-                </Card.Title>
-                <hr></hr>
-                <Card.Text> Card Notas: {especial.notas} </Card.Text>
-                <Card.Text> cultivado a una altura de:  {especial.altura} </Card.Text>
-               </Col>
-               </Row>
-           </Card.Body>
-       </Card>
-       </div>
-        </div>
+    useEffect(() => {
+        fetch('http://localhost:3001/cafes')
+            .then(response => response.json())
+            .then(data => datosCafes(data))
+    }, [])
+
+    return (
+            <Container>
+                    <Row>
+                        <h1><FormattedMessage id="The magic aroma"/></h1>
+                    </Row>
+                    <Row>
+                        <img src="/header.png"/>
+                    </Row>
+                <Row>
+                    <Col xs={6} md={6}>
+                        <table className="table">
+                                <tr>
+                                    <th>#</th>
+                                    <th><FormattedMessage id="Name"/></th>
+                                    <th><FormattedMessage id="Type"/></th>
+                                    <th><FormattedMessage id="Region"/></th>
+                                </tr>
+                            <tbody>
+                                {cafes.map((cafe) => (
+                                    <tr key={cafe.id} onClick={() => handleClick(cafe)} className="cafe-list">
+                                        <td>{cafe.id}</td><td>{cafe.nombre}</td><td>{cafe.tipo}</td><td>{cafe.region}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </Col>
+                    {
+                    CafeSelecionado &&
+                        <Col xs={2} md={2}>
+                            <Card>
+                                    <Card.Title>{CafeSelecionado.nombre}</Card.Title>
+                                    <Card.Text >
+                                    <FormattedDate
+                                            value={new Date(CafeSelecionado.fecha_cultivo)}
+                                            year='numeric'
+                                            month='long'
+                                            day='numeric'
+                                            weekday='long'
+                                    />
+                                    </Card.Text>
+                                        <Card.Img src={CafeSelecionado.imagen} />
+                                        <Card.Text><FormattedMessage id="Notes"/></Card.Text>
+                                        <Card.Text>  {CafeSelecionado.notas}</Card.Text>
+                                        <Card.Text><FormattedMessage id="Cultivated at an altitude of"/>{CafeSelecionado.altura}<FormattedMessage id="masl"/></Card.Text>
+                            </Card>
+                        </Col>
+                    }
+                </Row>
+            </Container>
     )
 }
+
 export default CafeDetail;

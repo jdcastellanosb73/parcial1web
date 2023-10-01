@@ -1,120 +1,88 @@
-import React, {useState, useEffect} from "react";
+import { useState } from 'react';
+import { Container } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
-import Form from "react-bootstrap/Form";
-import Button from 'react-bootstrap/Button';
-import Container from "react-bootstrap/esm/Container";
-import { useNavigate } from "react-router-dom";
+import {FormattedMessage, FormattedDate} from 'react-intl';
 
-function Login(props){
 
-  // entrada del usuario
-  const navigate = useNavigate();
-  const[logins, setLogins] = useState(true);
-  const [formValues, setFormValues] = useState({email:"", password:"",role:true})
-  const [validationStates, setValidationStates] = useState({emailState:true, passwordState:true})
+function Login() {
 
-// Creamos un nuevo XMLHttpRequest
-var xhttp = new XMLHttpRequest();
+    const [valores , datosValores] = useState({ login: "", password: "" });
 
-// Esta es la función que se ejecutará al finalizar la llamada
-xhttp.onreadystatechange = function() {
-  // Si nada da error
-  if (this.status == 200) {
-    // La respuesta, aunque sea JSON, viene en formato texto, por lo que tendremos que hace run parse
-    console.log(JSON.parse(this.responseText));
-  }
-  else
-  console.log(JSON.parse(this.responseText));
-};
+    const [error, datosError] = useState(false);
 
-// Endpoint de la API y método que se va a usar para llamar
-xhttp.open("POST", "http://localhost3001/login", true);
-xhttp.setRequestHeader("Content-type", "application/json");
-
-// Si quisieramos mandar parámetros a nuestra API, podríamos hacerlo desde el método send()
- var valorARevisar = xhttp.send(Login);
- // Si quisieramos mandar parámetros a nuestra API, podríamos hacerlo desde el método send()
- var valorARevisar2 = xhttp.send(password);
-
-  //click para continuar
-  const clickContinuar = (() => {
-
-    //se verifica que sea el email correcto
-    if (formValues.email.match(valorARevisar)) {
-        setValidationStates({ ...validationStates, emailState: true });
-        setLogins(false);
-        }
-    else if (!formValues.email.match(valorARevisar)) {
-        setValidationStates({ ...validationStates, emailState: false });
-        }
-    })
-
-    //se verifica que sea el email correcto
-    if (formValues.password.match(valorARevisar2)) {
-      setValidationStates({ ...validationStates, passwordState: true });
-      setLogins(false);
-      }
-  else if (!formValues.password.match(valorARevisar2)) {
-      setValidationStates({ ...validationStates, passwordState: false });
-      }
-  }
-
-  
-  const clickSubmit = (() => {
-    if (validationStates.emailState && validationStates.passwordState) {
-      handlePost();
-    } else if (!formValues.email.match(valorARevisar)) {
-      setValidationStates({ ...validationStates, emailState: false });
-    } else if (!formValues.password.match(valorARevisar2)) {
-      setValidationStates({ ...validationStates, passwordState: false });
+    const handleSubmit = (e) => {
+        fetch('http://localhost:3001/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(valores),
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    datosError(false);
+                    window.location.href = "/cafes";
+                } else {
+                    datosError(true);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            }
+            );
     }
-    })
-    const exampleJSON = { email: formValues.email, password: formValues.password}
 
-    async function handlePost() {
-      console.log("Envio de Post")
-      console.log(JSON.stringify(exampleJSON))
-      navigate("/cafes" )
-    };
+    const handleCancel = (e) => {
+    }
 
-    return(
-        <Container>
-    <Row>
-        <Col style={{backgroundColor: 'white'}}>
-        {(logins ) && 
-            <Form>
-                <Form.Group className='mb-6' controlId='formBasicEmail'>
-                    <h3>Nombre de</h3>
-                    <Form.Control type='email' placeholder='Enter email' onChange={handleEmailChange} value={formValues.email} className={!validationStates.emailState ? 'is-invalid' : ''}/>
-                    {!validationStates.emailState &&  <Form.Text className='text-muted'>Error de autenticaciòn. Revise sus credenciales.</Form.Text>}
-                 </Form.Group>
-                 <Button  onClick={clickContinuar} >
-                        Continuar
-                </Button> 
-            </Form>
-        }
-        {(!logins ) &&      
-            <Form>
+    return (
+            <Container>
+                    <Col xs={10} md={10} xl={10} xxl={10}>
+                                <Row>
+                                    <h1><FormattedMessage id="The magic aroma"/></h1>
+                                </Row>
+                                <Row>
+                                    <img src="/header.png"/>
+                                </Row>
+                            <Card >
+                            <p>Inicio de sesion</p>
+                                        <Col xs={12} md={12} xl={12} xxl={12}>
+                                            <Card.Subtitle><FormattedMessage id="Username"/></Card.Subtitle>
+                                        </Col>
+                                        <Col xs={10} md={10} xl={10} xxl={10}>
+                                            <input type="text" onChange={(e) => datosValores({ ...valores, login: e.target.value })} />
+                                        </Col>
+                                        <Col xs={10} md={10} xl={10} xxl={10}>
+                                            <Card.Subtitle><FormattedMessage id="Password"/></Card.Subtitle>
+                                        </Col>
 
-                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <h3> {formValues.email}</h3>
-                    <Form.Label>Contraseña</Form.Label>
-                    <Form.Control type="password" placeholder="Password" onChange={handlePasswordChange} value={formValues.password} className={!validationStates.passwordState ? 'is-invalid' : ''}/>
-                    { !validationStates.passwordState && <Form.Text className="text-muted">Error de autenticaciòn. Revise sus credenciales.</Form.Text>} 
-                </Form.Group>
-
-                <Button variant="primary" onClick={clickSubmit} className="w-25 btn-secondary rounded-pille"  >
-                    Ingresar
-                </Button>
-                <Button variant="primary" onClick={clickSubmit} className="w-25 btn-secondary rounded-pille"  >
-                    Cancelar
-                </Button>
-            </Form>
-        } 
-        </Col>
-    </Row>
-    </Container>
+                                    <Row>
+                                        <Col xs={10} md={10} xl={10} xxl={10}>
+                                            <input type="password" onChange={(e) => datosValores({ ...valores, password: e.target.value })} />
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs={3} md={3}>
+                                            <button onClick={handleSubmit}><FormattedMessage id="Sign-in"/></button>
+                                        </Col>
+                                        <Col xs={3} md={3} className="text-end">
+                                            <button onClick={handleCancel}><FormattedMessage id="Cancel"/></button>
+                                        </Col>
+                                    </Row>
+                                    {error &&
+                                        <Row>
+                                            <Col xs={10} md={10} xl={10} xxl={10}>
+                                                <p><FormattedMessage id="Authentication error. Check your credentials"/></p>
+                                            </Col>
+                                        </Row>
+                                    }
+                            </Card>
+                            <p>Contact us: +57 3102105253 - info@elaromamagico.com - @elaromamagico</p>
+                        </Col>
+                </Container>
     );
+}
 
 export default Login;

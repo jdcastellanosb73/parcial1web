@@ -4,11 +4,33 @@ import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-import "bootstrap/dist/css/bootstrap.min.css";
+import './i18n';
+import { IntlProvider } from 'react-intl';
+import lenguajeEs from "./lenguajes/es";
+import lenguajeEn from "./lenguajes/en";
+
+function detectUserLanguage() {
+  const userLang = navigator.language || navigator.userLanguage;
+  
+  return userLang.split('-')[0];
+}
+
+
+const idiomaNavegador = detectUserLanguage();
+
+
+const idiomaLocal = {
+  "es": lenguajeEs,
+  "en": lenguajeEn,
+};
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <React.StrictMode>
+    <IntlProvider locale={idiomaNavegador} messages= {idiomaLocal[idiomaNavegador]}>
     <App />
+    </IntlProvider>
+  </React.StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change
