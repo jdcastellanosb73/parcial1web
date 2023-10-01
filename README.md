@@ -54,4 +54,4 @@ La app cambia el idioma atomáticamente (entre EN y ES) dependiendo del idioma d
 <img width="800" alt="tabla de los cafes" src="[![image-2023-09-30-233644603.png](https://i.postimg.cc/qqwLyKsd/image-2023-09-30-233644603.png)](https://postimg.cc/0K6DqbXt)">
 
 ### información detallada cafes.
-<img width="800" alt="informacion detallada" src="[![image-2023-09-30-233737432.png](https://i.postimg.cc/k4dFHswm/image-2023-09-30-233737432.png)](https://postimg.cc/kVfb6xk1)">
+<src="[![image-2023-09-30-233737432.png](https://i.postimg.cc/k4dFHswm/image-2023-09-30-233737432.png)](https://postimg.cc/kVfb6xk1)">
