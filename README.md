@@ -1,4 +1,4 @@
-## Correr aplicación
+![image](https://github.com/jdcastellanosb73/parcial1web/assets/53950946/fc2a2097-bef2-4020-ac96-28dbf6f2cd34)## Correr aplicación
 Antes de empezar a usar la aplicación, se debe correr este comando: `npm install`
 <br>
 
@@ -48,13 +48,12 @@ se añadio i18n mediante el uso del comando:npm install i18next react-i18next i1
 La app cambia el idioma atomáticamente (entre EN y ES) dependiendo del idioma del navegador. Si se está usando Chrome, ir a configuración -> idiomas y mover inglés o español al principio de la pila. Si por alguna razón la app no puede reconocer el idioma o se está en otro diferente a español o inglés, se selecciona automáticamente inglés.
 
 ### APP.
-<img width="800" alt="App" src="[landing.jpg](https://postimg.cc/Dm1M90sj)">
+<img width="800" alt="App" src="[![image-2023-09-30-233553998.png](https://i.postimg.cc/MHSPyxg1/image-2023-09-30-233553998.png)](https://postimg.cc/TLtJx8dP)">
 
 
 ### tabla con los cafes.
-<img width="800" alt="tabla de los cafes" src="[image-2023-09-30-233102499.png](https://postimg.cc/62f1G19s)">
+<img width="800" alt="tabla de los cafes" src="[![image-2023-09-30-233644603.png](https://i.postimg.cc/qqwLyKsd/image-2023-09-30-233644603.png)](https://postimg.cc/0K6DqbXt)">
 
 
 ### información detallada cafes.
-<img width="800" alt="informacion detallada" src="[![image-2023-09-30-233102499.png](https://i.postimg.cc/zBsm696f/image-2023-09-30-233102499.png)](https://postimg.cc/62f1G19s)")
-">
+<img width="800" alt="informacion detallada" src="[![image-2023-09-30-233737432.png](https://i.postimg.cc/k4dFHswm/image-2023-09-30-233737432.png)](https://postimg.cc/kVfb6xk1)">
