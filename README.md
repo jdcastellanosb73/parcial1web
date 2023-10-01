@@ -37,7 +37,7 @@ Este proceso del desarrollo del parcial se hace para que se pueda hacer la inter
 En este caso se volvio a hacer la aplicación para que funcionara de manera correcta. Lo principal es que se tienen dos componetes hijos de App, los cuales son los dos que se usan para hacer la aplicacion. Tambien cabe mencionar que no se realizaron cambios esteticos, puesto que este es para el funcionamiento del i18n y no es calificable, lo primero que se hizo es que se dejaron dos componentes, login y cafeDetails. En cuanto al componente login, se cargan los datos mediante un fetch, se verifica con un booleano que reciba el status de 200 para saber que esta conectado y en estos se hace la autenticación de los valores.
 el segundo componente es cafeDetails, donde se hacen dos fetch, uno para cafes (los datos del cafe) y el segundo fetch para los cafe.id el cual tiene los datos acorde al id. En este se genera la tabla con los valores sacados del fetch de cafe, de igual manera se le puso la funcion al click para que cuando haga click en la tabla este saque los datos del segundo fetch en una carta. y de esta forma funcione correctamente y se pueda hacer la internacionalización.
 
-## Componentes (en el parcial)
+## Componentes (Despues del parcial)
 - App -> Carga todos los componentes.
 - Permisos (login) -> Hace fetch a todos datos (POST) Realiza el login del usuario, verifica que los campos cumplan las condiciones, se añade la funcion click para que se dirija a los cafes una vez se compruebe con los botones.
 - CafesDetail -> Hace fetch a todos datos (GET) y los guarda en diferentes arreglos, con el fin de poder hacer la tabla y poder sacar la carta con los detalles del cafe. 
