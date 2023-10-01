@@ -56,5 +56,5 @@ La app cambia el idioma atomáticamente (entre EN y ES) dependiendo del idioma d
 
 
 ### información detallada cafes.
-<img width="800" alt="informacion detallada" src="![image](https://github.com/jdcastellanosb73/parcial1web/assets/53950946/b1df7fbc-5834-4a58-818f-75e484a7ffcf)
+<img width="800" alt="informacion detallada" src="[![image-2023-09-30-233102499.png](https://i.postimg.cc/zBsm696f/image-2023-09-30-233102499.png)](https://postimg.cc/62f1G19s)")
 ">
